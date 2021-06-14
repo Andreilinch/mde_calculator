@@ -2,24 +2,62 @@
 <html lang="en">
 <meta charset="UTF-8">
 
-<h1>Title of the website</h1>
+<body>
 
-<h3> something </h3>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+
+
+    <header>
+      <div class="container">
+        <h1 class="logo">MDE Calculator</h1>
+
+      </div>
+    </header>
+    <div class="container">
+
+    </div>
+
+<h3>
+    Minimum detectable effect (MDE) is a calculation that estimates the smallest improvement you’re willing to
+    be able to detect. It determines how "sensitive" an experiment is.
+</h3>
 
 <ul>
     <li><a href="#">Home Page </a>  </li>
     <li><a href="#">About Page </a>  </li>
 </ul>
 
-<p>Some content of the home page</p>
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+$$
+MDE_\% = (t_{alpha/2} + t_{beta}) \frac{\sqrt{ \frac{Var_c}{Nc}+\frac{Var_t}{Nt}}}{mean}
+$$
+
+<p>To calculate MDE you should upload csv file with two columns: unique id | metric value</p>
 
 <form method=post enctype=multipart/form-data>
-    <input type=file name=file>
+    <input type=file name=file accept=".csv">
     <input type=submit value=Upload>
 </form>
 <hr>
 
-Shape is: {{ shape }}
+MDE is: {{ shape }}
+
+
+</body>
 
 </html>
+
