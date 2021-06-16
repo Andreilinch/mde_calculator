@@ -24,12 +24,6 @@
     be able to detect. It determines how "sensitive" an experiment is.
 </h3>
 
-<ul>
-    <li><a href="#">Home Page </a>  </li>
-    <li><a href="#">About Page </a>  </li>
-</ul>
-
-
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -46,17 +40,41 @@ $$
 MDE_\% = (t_{alpha/2} + t_{beta}) \frac{\sqrt{ \frac{Var_c}{Nc}+\frac{Var_t}{Nt}}}{mean}
 $$
 
-<p>To calculate MDE you should upload csv file with two columns: unique id | metric value</p>
+<p>Determine equation parameters: </p>
+
+<form method=post action="">
+<table>
+  {% for field in form %}
+    <tr>
+    <td>{{ field.name }}</td><td>{{ field }}</td>
+    <td>{{ field.label }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+
+<p>
+{% if result != None %}
+<img src="{{ result }}" width="500">
+{% endif %}
+</p>
+
+
+<p>To calculate MDE you should upload csv file with two columns: unique id | metric value | test group </p>
 
 <form method=post enctype=multipart/form-data>
     <input type=file name=file accept=".csv">
-    <input type=submit value=Upload>
+    <input type=submit value=Calculate>
+
 </form>
+
+<p>MDE is: {{ MDE }}</p>
+
 <hr>
-
-MDE is: {{ shape }}
-
-
+<ul>
+    <li><a href="#">Home Page </a>  </li>
+    <li><a href="#">About Page </a>  </li>
+</ul>
 </body>
 
 </html>

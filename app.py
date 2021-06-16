@@ -1,27 +1,20 @@
 from flask import Flask, render_template, request
+from validation import InputForm
 import pandas as pd
+from compute import compute
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
+    form = InputForm(request.form)
+    if request.method == 'POST' and form.validate():
+        result = compute(form.alpha.data, form.beta.data)
         df = pd.read_csv(request.files.get('file'))
-        return render_template('index.html',  current_title = 'Custom Title',shape=df.shape)
     else:
-        return render_template('index.html', current_title = 'Custom Title')
-
-# @app.route('/result', methods=['GET', 'POST'])
-# def result():
-#     if request.method == 'POST':
-#         df = pd.read_csv(request.files.get('file'))
-#         return render_template('result.html',  shape=df.shape)
-#     return render_template('index.html')
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
+        df = pd.DataFrame()
+        result = None
+    return render_template("index.html", current_title = 'Custom Title', MDE=df.shape, form = form, result = result)
 
 if __name__ == '__main__':
     app.run(debug=True)
-#print(__name__)
