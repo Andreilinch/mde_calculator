@@ -1,0 +1,29 @@
+html {
+  background-color: #c8c8c8;
+}
+
+/*
+ * Formatting the header area
+*/
+
+header {
+  background-color: #DFB887;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+body {
+  background-color: #f2f3f4;
+  margin-left: 300px;
+  margin-right: 300px;
+  padding: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+
+}
+
+
+
