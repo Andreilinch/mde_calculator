@@ -1,9 +1,9 @@
 from numpy import linspace
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import os, time, glob
 
-def damped_vibrations(alpha, beta):
-    return alpha*beta
+def mde_calc(alpha, beta):
+    return alpha*beta #2 * (sigma**2) * ((stats.norm.ppf(1-alpha/2) + stats.norm.ppf(1-beta))**2) / ((mu * MDE)**2)
 
 def compute(alpha, beta ):
     return alpha*beta

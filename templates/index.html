@@ -6,6 +6,7 @@
 
   <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"  type="image/x-icon">
   </head>
 
 
@@ -43,38 +44,41 @@ $$
 <p>Determine equation parameters: </p>
 
 <form method=post action="">
+
 <table>
   {% for field in form %}
     <tr>
-    <td>{{ field.name }}</td><td>{{ field }}</td>
-    <td>{{ field.label }}</td>
+        <td>{{ field.name }}</td>
+        <td>{{ field }}</td>
+        <td>{{ field.label }}</td>
     </tr>
   {% endfor %}
 </table>
 
-
-<p>
-{% if result != None %}
-<img src="{{ result }}" width="500">
-{% endif %}
-</p>
-
-
-<p>To calculate MDE you should upload csv file with two columns: unique id | metric value | test group </p>
+<p> To calculate MDE you should upload csv file with three columns: unique id | metric value | test group </p>
 
 <form method=post enctype=multipart/form-data>
-    <input type=file name=file accept=".csv">
+    <input type=file name="df" accept=".csv">
     <input type=submit value=Calculate>
 
 </form>
 
-<p>MDE is: {{ MDE }}</p>
+<br>
+
+<body>
+    {% for table in tables %}
+        {{ table|safe }}
+    {% endfor %}
+</body>
+
+<p> MDE is: {{ MDE }} </p>
 
 <hr>
 <ul>
     <li><a href="#">Home Page </a>  </li>
     <li><a href="#">About Page </a>  </li>
 </ul>
+
 </body>
 
 </html>
