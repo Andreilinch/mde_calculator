@@ -7,8 +7,8 @@ from scipy.stats import norm
 # def damped_vibrations(alpha, beta):
 #    return alpha*beta
 
-def compute(alpha, beta, sigma, n):
-    return (norm.isf(alpha / 2) + norm.isf(beta/100)) * np.sqrt(2*(sigma**sigma)/ n)
+def compute(alpha, beta, sigma, n, Mean):
+    return (((norm.isf(alpha / 2) + norm.isf(1 - beta/100)) * np.sqrt(2*(sigma**sigma)/n))/Mean)*100
 
 # **resolution=500):
 # """Return filename of plot of the damped_vibration function."""

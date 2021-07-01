@@ -10,7 +10,8 @@ def index():
     form = InputForm(request.form)
     if request.method == 'POST' and form.validate():
         result = compute(form.alpha.data, form.beta.data,
-                         form.sigma.data, form.n.data)
+                         form.sigma.data, form.n.data,
+                         form.Mean.data)
         #df = pd.read_csv(request.files.get('file'))
     else:
         #df = pd.DataFrame()
