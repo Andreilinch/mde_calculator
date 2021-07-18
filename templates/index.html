@@ -18,6 +18,7 @@
 
     </div>
 
+
 <h3>
     Minimum detectable effect (MDE) is a calculation that estimates the smallest improvement you’re willing to
     be able to detect. It determines how "sensitive" an experiment is.
@@ -39,29 +40,44 @@ $$
 MDE_\% = (t_{\alpha/2} + t_{\beta}) \frac{ \sqrt{\frac{2{\sigma}^2}{n}} }{\mu}
 $$
 
-<p>Determine equation parameters: </p>
+<div class="flex-container">
+  <div class="first">
+      <p>Determine equation parameters: </p>
+      <form method=post action="">
+        <table>
+          {% for field in form %}
+            <tr>
+            <td>{{ field.name }}</td><td>{{ field }}</td>
+            <td>{{ field.label }}</td>
+            {% if field.errors %}
+              <td><ul class=errors>
+              {% for error in field.errors %}
+                <li><font color="red">{{ error }}</font></li>
+              {% endfor %}</ul></td>
+            {% endif %}
+            </tr>
+          {% endfor %}
 
-<form method=post action="">
-<table>
-  {% for field in form %}
-    <tr>
-    <td>{{ field.name }}</td><td>{{ field }}</td>
-    <td>{{ field.label }}</td>
-    {% if field.errors %}
-      <td><ul class=errors>
-      {% for error in field.errors %}
-        <li><font color="red">{{ error }}</font></li>
-      {% endfor %}</ul></td>
-    {% endif %}
-    </tr>
-  {% endfor %}
-</table>
+
+        </table>
+  </div>
+
+  <div class="second">
+      <img src="/static/images/mde_explained.png" alt="mde explained" width="400" height="350">
+  </div>
+
+</div>
+
+
 <p><input type=submit value=Compute></form></p>
+
 <p>
-{% if result != None %}
-    <p>MDE is: {{ result }}</p>
+{% if Mde_c != None %}
+    <p>MDE is: {{ Mde_c }} %</p>
+    <img src="/static/images/new_plot.png" alt="my plot">
 {% endif %}
 </p>
+
 
 
 <!--<p>To calculate MDE you should upload csv file with three columns: unique id | metric value | test group </p> -->

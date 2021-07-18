@@ -20,5 +20,23 @@ body {
   color: #444;
 }
 
+.flex-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.first {
+  background-color: #FFFFFF;
+  height: 350px;
+  flex-grow: 6;
+}
+
+.second {
+  background-color: #c8c8c8;
+  height: 350px;
+  flex-grow: 4;
+}
 
 

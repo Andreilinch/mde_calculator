@@ -1,33 +1,36 @@
+import base64
+import glob
+import seaborn as sns
+import matplotlib.pyplot as plt
+import random
 import numpy as np
-# import matplotlib.pyplot as plt
+import os
+import time
+import io
 from scipy.stats import norm
-#import os, time, glob
+import random
+from matplotlib.figure import Figure
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+
+def mde(alpha, beta, sigma, n, Mean):
+    return round((((norm.isf(alpha / 2) + norm.isf(1 - beta / 100)) * np.sqrt(2 * (sigma ** sigma) / n)) / Mean) * 100,
+                 3)
+
+def plot_png():
+    fig = create_figure()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
 
-# def damped_vibrations(alpha, beta):
-#    return alpha*beta
+def create_figure():
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    xs = range(100)
+    ys = [random.randint(1, 5) for x in xs]
+    axis.plot(xs, ys)
+    fig.savefig('/static/images/new_plot.png')
+    return #fig
 
-def compute(alpha, beta, sigma, n, Mean):
-    return (((norm.isf(alpha / 2) + norm.isf(1 - beta/100)) * np.sqrt(2*(sigma**sigma)/n))/Mean)*100
-
-# **resolution=500):
-# """Return filename of plot of the damped_vibration function."""
-# t = linspace(0, T, resolution+1)
-# u = damped_vibrations(alpha, beta)
-# plt.figure()  # needed to avoid adding curves in plot
-# plt.plot(t, u)
-# plt.title('A=%g, b=%g, w=%g' % (A, b, w))
-# if not os.path.isdir('static'):
-#     os.mkdir('static')
-# else:
-#     # Remove old plot files
-#     for filename in glob.glob(os.path.join('static', '*.png')):
-#         os.remove(filename)
-# Use time since Jan 1, 1970 in filename in order make
-# a unique filename that the browser has not chached
-# plotfile = os.path.join('static', str(time.time()) + '.png')
-# plt.savefig(plotfile)
-
-
-# if __name__ == '__main__':
-#    print compute(1, 2)

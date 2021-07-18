@@ -5,7 +5,7 @@ class InputForm(Form):
             label='the selected level of significance', default=0.05,
             validators=[validators.InputRequired()])
         beta = FloatField(
-            label='%', default=80,
+            label='%', default=20,
             validators=[validators.InputRequired()])
         sigma = FloatField(
             label='the standard deviation', default=1,
@@ -16,6 +16,6 @@ class InputForm(Form):
         Mean = FloatField(
             label='', default=10,
             validators=[validators.InputRequired()])
-        Tail = SelectField(
-            u'one-tailed or two-tailed test', choices=[('one', 'one-tailed'), ('two', 'two-tailed')]
+        Side = SelectField(
+            u'one-sided or two-sided test', choices=[('one', 'one-sided'), ('two', 'two-sided')]
             )
